@@ -6,7 +6,7 @@ from threading import Thread
 from time import strftime,gmtime
 from tqdm import tqdm
 
-def upload(device_type, username, password, ip_address,Md5_Number):
+def Md5Check(device_type, username, password, ip_address,Md5_Number):
     SshMd5 = {
         'device_type' : device_type,
         'ip' : ip_address,
@@ -45,7 +45,7 @@ password = getpass.getpass()
 print("\n")
 
 threads=[]
-threads = [Thread(target=upload, args=('cisco_ios', username, password, ip_address, Md5_Number)) for ip_address in f.readlines()]
+threads = [Thread(target=Md5Check, args=('cisco_ios', username, password, ip_address, Md5_Number)) for ip_address in f.readlines()]
 for thread in threads:
     thread.start()
 for thread in threads:
